@@ -1,19 +1,19 @@
 "use client";
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 
 export default function SignupPage() {
   const router = useRouter();
-  const [user, setUser] = React.useState({
+  const [user, setUser] = useState({
     email: "",
     password: "",
     username: "",
   });
-  const [buttonDisabled, setButtonDisabled] = React.useState(false);
-  const [loading, setLoading] = React.useState(false);
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const onSignup = async () => {
     try {
@@ -23,7 +23,6 @@ export default function SignupPage() {
       router.push("/login");
     } catch (error: any) {
       console.log("Signup failed", error.message);
-
       toast.error(error.message);
     } finally {
       setLoading(false);
